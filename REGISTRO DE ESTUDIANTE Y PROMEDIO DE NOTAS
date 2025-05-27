@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+/*Define una estructura Alumno con los campos: nombre, nota1, nota2 y nota3. 
+Carga un arreglo con 5 alumnos, calcula el promedio de notas de cada uno y muestra el nombre del alumno con el mejor promedio.*/
+
+struct estudiante {
+	char nombre[30];
+	float nota1, nota2, nota3;
+};
+
+int main() {
+	struct estudiante arr[5];
+	float promedio, mayor = 0;
+	int indiceMejor = 0;
+	
+	// Cargar datos de los alumnos
+	for (int i = 0; i < 5; i++) {
+		printf("Ingrese el nombre del estudiante %d: ", i + 1);
+		scanf("%s", arr[i].nombre);
+		printf("Ingrese la primera nota del estudiante %d: ", i + 1);
+		scanf("%f", &arr[i].nota1);
+		printf("Ingrese la segunda nota del estudiante %d: ", i + 1);
+		scanf("%f", &arr[i].nota2);
+		printf("Ingrese la tercera nota del estudiante %d: ", i + 1);
+		scanf("%f", &arr[i].nota3);
+		printf("\n");
+	}
+	
+	// Calcular promedios y buscar el mayor
+	for (int i = 0; i < 5; i++) {
+		promedio = (arr[i].nota1 + arr[i].nota2 + arr[i].nota3) / 3.0;
+		if (promedio > mayor) {
+			mayor = promedio;
+			indiceMejor = i;
+		}
+	}
+	
+	// Mostrar al alumno con mejor promedio
+	printf("El alumno con el mejor promedio es: %s con %.2f\n", arr[indiceMejor].nombre, mayor);
+	
+	return 0;
+}
