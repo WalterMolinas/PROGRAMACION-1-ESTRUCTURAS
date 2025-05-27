@@ -1,0 +1,21 @@
+#include <stdio.h>
+/*Crea un programa en C que defina una estructura llamada Estudiante con los campos: nombre, edad y promedio. El programa debe permitir ingresar los datos de un estudiante, y luego mostrarlos por pantalla.*/
+struct estudiante{
+	char nombre[30];
+	int edad;
+	float promedio;
+};
+int main() {
+	struct estudiante p1;
+	printf("ingrese el nombre del estudiante\n");
+	scanf("%s", &p1.nombre);
+	printf("ingrese la edad del estudiante\n");
+	scanf("%d", &p1.edad);
+	printf("ingrese el promedio del estudiante\n");
+	scanf("%f", &p1.promedio);
+	printf("\n El nombre del estudiante es: %s \n",p1.nombre);
+	printf("La edad del estudiante es: %d \n",p1.edad);
+	printf("El promedio del estudiante es: %.2f \n",p1.promedio);
+	return 0;
+}
+
