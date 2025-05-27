@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+/*Crea una estructura Persona con los campos: nombre y DNI. 
+Carga los datos de 5 personas y permite al usuario ingresar un nombre. 
+El programa debe buscar y mostrar el DNI de esa persona si se encuentra en el arreglo, o informar que no existe.*/
+struct persona {
+	char nombre[30];
+	int dni;
+};
+int main() {
+	char buscado[30];
+	int encontrado=0;
+	struct persona arr[5];
+	for (int i = 0; i < 5; i++) {
+		printf("Ingrese el nombre de la persona %d: ", i + 1);
+		scanf("%s", arr[i].nombre);
+		printf("Ingrese el DNI de la persona %d: ", i + 1);
+		scanf("%d", &arr[i].dni);
+		printf("\n");
+	}
+	printf("Ingrese el Nombre de la persona que desea buscar y se mostrará su DNI: ");
+	scanf("%s", buscado);
+	for(int i=0;i<5;i++){
+		if(strcmp(buscado,arr[i].nombre)==0){
+			printf ("El Dni de la persona es: %d",arr[i].dni);
+			encontrado=1;
+			break;
+		}
+	}
+	if(!encontrado){
+		printf("La Persona no se encuentra en el Arreglo");
+	}
+	return 0;
+}
+
