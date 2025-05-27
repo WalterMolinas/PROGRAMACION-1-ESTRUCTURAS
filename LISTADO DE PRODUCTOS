@@ -1,0 +1,26 @@
+#include <stdio.h>
+/*Crea una estructura llamada Producto con los campos: nombre, precio y cantidad. 
+Luego, crea un arreglo para guardar 5 productos. El programa debe permitir ingresar los datos de los productos
+y luego mostrar un listado con el nombre y el valor total en stock (precio × cantidad) de cada uno.*/
+struct producto{
+	char nombre[30];
+	float precio;
+	float cantidad;
+};
+int main() {
+	struct producto arr[2];
+	for (int i=0;i<2;i++){
+		printf("Ingrese el nombre del producto: %d\n",i+1);
+		scanf("%s", &arr[i].nombre);
+		printf("Ingrese el precio del producto %d $: \n",i+1);
+		scanf("%f", &arr[i].precio);
+		printf("Ingrese la cantidad del producto en stock: %d\n",i+1);
+		scanf("%f", &arr[i].cantidad);
+	}
+	printf("\nNOMBRE DEL PRODUCTO: \tVALOR TOTAL EN STOCK:\n");
+	for (int i=0; i<2;i++){
+		printf("%s \t\t\t$%.2f\n",arr[i].nombre,arr[i].precio*arr[i].cantidad);
+	}
+	return 0;
+}
+
