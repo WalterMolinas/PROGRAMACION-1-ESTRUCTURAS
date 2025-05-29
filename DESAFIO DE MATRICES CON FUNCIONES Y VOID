@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <string.h>
+
+#define TAM 4
+#define MAX_ARREGLO 16
+#define MAX_CADENA 20
+/*dada una matriz cuadrada de numero 4x4 se pide: cargar la matriz. mostrar el resultado en forma de matriz. 
+la matriz se carga usando sentencia repetitiva o interactiva. las dimensiones de las matrices se deben especificar con define. usar procedimiento para cargar la matriz.
+cargar los numeros divisibles por 4 de la matriz en el arreglo. usar funcion para este calculo. mostrar el arreglo por pantalla. indicar cuantos numeros se cargaron en el arreglo.
+a partir del arreglo cargar una cadena considerando lo siguiente para numero 4 del arreglo, reemplazarlo con la letra a, el numero 8 con la letra e, el numero 12 con la letra i, el numero  16 con la letra 0 y numero 20 con la U.
+ indicar la cadena y usando la funcion length*/
+
+
+// Procedimiento para cargar matriz
+void cargarMatriz(int mat[TAM][TAM]) {
+	for (int i = 0; i < TAM; i++) {
+		for (int j = 0; j < TAM; j++) {
+			printf("Ingrese el valor para la posición [%d][%d]: ", i, j);
+			scanf("%d", &mat[i][j]);
+		}
+	}
+}
+
+// Procedimiento para mostrar matriz
+void mostrarMatriz(int mat[TAM][TAM]) {
+	printf("\nMatriz cargada:\n");
+	for (int i = 0; i < TAM; i++) {
+		for (int j = 0; j < TAM; j++) {
+			printf("%4d", mat[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+// Función para cargar en un arreglo los números divisibles por 4
+int cargarDivisiblesPor4(int mat[TAM][TAM], int arreglo[]) {
+	int k = 0;
+	for (int i = 0; i < TAM; i++) {
+		for (int j = 0; j < TAM; j++) {
+			if (mat[i][j] % 4 == 0) {
+				arreglo[k++] = mat[i][j];
+			}
+		}
+	}
+	return k;  // devuelve cantidad de elementos cargados
+}
+
+// Procedimiento para mostrar el arreglo
+void mostrarArreglo(int arreglo[], int tam) {
+	printf("\nArreglo con números divisibles por 4:\n");
+	for (int i = 0; i < tam; i++) {
+		printf("%d ", arreglo[i]);
+	}
+	printf("\nCantidad total: %d\n", tam);
+}
+
+// Procedimiento para convertir arreglo en cadena según correspondencia
+void convertirACadena(int arreglo[], int tam, char cadena[]) {
+	int k = 0;
+	for (int i = 0; i < tam; i++) {
+		switch (arreglo[i]) {
+		case 4: cadena[k++] = 'a'; break;
+		case 8: cadena[k++] = 'e'; break;
+		case 12: cadena[k++] = 'i'; break;
+		case 16: cadena[k++] = 'o'; break;
+		case 20: cadena[k++] = 'u'; break;
+		// No se cargan otros números
+		}
+	}
+	cadena[k] = '\0';  // Termina cadena
+}
+
+int main() {
+	int matriz[TAM][TAM];
+	int arreglo[MAX_ARREGLO];
+	char cadena[MAX_CADENA];
+	
+	// Paso 1: cargar y mostrar matriz
+	cargarMatriz(matriz);
+	mostrarMatriz(matriz);
+	
+	// Paso 2: cargar arreglo con divisibles por 4
+	int cantidad = cargarDivisiblesPor4(matriz, arreglo);
+	mostrarArreglo(arreglo, cantidad);
+	
+	// Paso 3: convertir arreglo a cadena
+	convertirACadena(arreglo, cantidad, cadena);
+	printf("\nCadena resultante: %s\n", cadena);
+	printf("Longitud de la cadena: %lu\n", strlen(cadena));
+	
+	return 0;
+}
