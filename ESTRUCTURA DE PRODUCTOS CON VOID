@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>  // Para strcpy() y strlen()
+#define nro 3
+/*se tiene una estructura de datos con el siguiente formato numero de producto nombre de producto y stock
+se pide: cargar los datos de la estructura, definir el tamaño de la estructura usando define
+mostrar la estructura en forma de informe (por columna producto numero y stock)
+ordenar la estructura por numero de producto usando la burbuja. usar un procedimiento.
+mostrar el resultado por pantalla.
+pasar el nombre del producto a una cadena, usar funciones definidas en string.
+para esto usar un procedimiento.
+indicar la longitud de la cadena usando una función string y mostrar en pantalla.*/
+struct producto {
+	char nombre[30];
+	int nroproducto;
+	int cantidad;
+};
+
+// Procedimiento para ordenar por número de producto usando burbuja
+void ordenarPorNumero(struct producto arr[], int n) {
+	struct producto temp;
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = 0; j < n - 1 - i; j++) {
+			if (arr[j].nroproducto > arr[j + 1].nroproducto) {
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+}
+
+// Procedimiento para copiar el nombre y mostrar longitud
+void mostrarNombreYLongitud(struct producto arr[], int n) {
+	char copia[30];
+	printf("\nNOMBRE DEL PRODUCTO\tLONGITUD DEL NOMBRE\n");
+	for (int i = 0; i < n; i++) {
+		strcpy(copia, arr[i].nombre);  // Copiar nombre a nueva cadena
+		int longitud = strlen(copia);  // Obtener longitud
+		printf("%-20s\t%d\n", copia, longitud);
+	}
+}
+
+int main() {
+	struct producto arr[nro];
+	
+	// Cargar productos
+	for (int i = 0; i < nro; i++) {
+		printf("Ingrese el nombre del producto: ");
+		scanf("%s", arr[i].nombre); 
+		
+		printf("Ingrese el numero del producto: ");
+		scanf("%d", &arr[i].nroproducto);
+		
+		printf("Ingrese la cantidad del producto en stock: ");
+		scanf("%d", &arr[i].cantidad);
+		printf("\n");
+	}
+	
+	// Ordenar por número de producto
+	ordenarPorNumero(arr, nro);
+	
+	// Mostrar estructura como informe
+	printf("\nNOMBRE DEL PRODUCTO\tNUMERO DE PRODUCTO\tTOTAL EN STOCK\n");
+	for (int i = 0; i < nro; i++) {
+		printf("%-20s\t%-20d\t%d\n", arr[i].nombre, arr[i].nroproducto, arr[i].cantidad);
+	}
+	
+	// Mostrar copia del nombre y longitud
+	mostrarNombreYLongitud(arr, nro);
+	
+	return 0;
+}
